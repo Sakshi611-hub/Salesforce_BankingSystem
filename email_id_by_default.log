@@ -1,0 +1,24 @@
+trigger  email_id_by_default on Contact (before insert, before update) 
+{
+  
+    for (Contact newContact : Trigger.new) 
+   
+    {
+  
+          
+        Contact_email_chenge__c CEC = Contact_email_chenge__c.getInstance(UserInfo.getUserId());
+         if (CEC != null && CEC.EmailChenge__c == true )
+        if (Trigger.isUpdate) {
+            
+            Contact oldContact = Trigger.oldMap.get(newContact.Id);
+
+        
+            if (oldContact != null && oldContact.Email != newContact.Email) {
+              
+                if (newContact.Email != 'noemail@gmail.com') {
+                    newContact.Email.addError('You can’t change the email address twice. Please contact the system admin.');
+                }
+            }
+        }
+        }
+    }
