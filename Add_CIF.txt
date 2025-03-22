@@ -1,0 +1,43 @@
+public class CreateCIF 
+{
+    public string Fname{GET;SET;}
+    public string Lame{GET;SET;}
+    public string Phone{GET;SET;}
+    public string  Email{GET;SET;}
+    public Date Datebirth{GET;SET;}
+    public string AdharCard{GET;SET;}
+    public string Massges{GET;SET;}
+    public string Address{GET;SET;}
+     public string Clr{GET;SET;}
+    
+      
+    
+    
+    public void CIFCreate()
+  
+    {
+           try
+    {
+        Customer_Imformation__c CIF= new Customer_Imformation__c();
+        CIF.First_Name__c=Fname;
+            CIF.Last_Name__c= Lame;
+            CIF.Contact_No__c=Phone;
+            CIF.Email_ID__c= Email;
+            CIF.Birthdate__c=Date.valueOf(Datebirth); /// for datesyntax
+            CIF.Adhar_No__c=AdharCard;
+            CIF.RES_Address__c=Address;
+        
+           insert CIF;
+        Clr='Green';
+        Massges='isersion Sucssesfull'+CIF.ID;
+    
+        
+       }
+       catch (Exception e) 
+       { 
+           Clr='Red';
+            Massges = 'Insertion Failed: ' + e.getMessage(); 
+    }
+        
+    }
+}
