@@ -1,0 +1,14 @@
+public class SchedualApex implements schedulable
+{
+ public void execute(System.SchedulableContext SA)    
+ {
+   
+        methodmessegesend SM = new methodmessegesend();
+        SM.toAdd = 'wakchauresakshi4@gmail.com';
+        SM.Subject = 'update succesfully';
+        SM.Body = 'System update Your Reacord Sucssesfully';
+        SM.methodmessegesendEmail();
+            
+ }
+
+}
