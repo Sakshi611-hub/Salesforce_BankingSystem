@@ -1,0 +1,21 @@
+public class MessagingNamespace
+{
+    public void sendSingleMail()
+    {
+        Messaging.SingleEmailMessage SM = new Messaging.SingleEmailMessage();
+        List<String> toAddresses = new List<String>{'wakchauresakshi4@gmail.com'};
+        SM.setToAddresses(toAddresses);
+       SM.setSubject('Hello Sakshi');
+        SM.setPlainTextBody('Hello Sakshi, Welcome to SBI Bank');
+        
+
+         Messaging.SingleEmailMessage SM1 = new Messaging.SingleEmailMessage();
+        List<String> toAddresses1 = new List<String>{'wakchauresakshi74gmail.com'};
+         SM.setToAddresses(toAddresses1);
+       SM.setSubject('Hello Sakshi');
+        SM.setPlainTextBody('Bye Bye... Sakshi,Have a Good Day');
+         
+        List<Messaging.Email> LE = new List<Messaging.Email>{SM,SM1};
+        Messaging.sendEmail(LE);
+    }
+}
