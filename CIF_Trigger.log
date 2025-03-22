@@ -1,0 +1,12 @@
+trigger CIF_TRIGGER on Customer_Imformation__c (after insert) 
+{
+ List<Customer_Imformation__c> CIF = trigger.new;
+
+    for(Customer_Imformation__c ECIF : CIF )
+
+ { 
+  Applicant__c AP = new Applicant__c();
+ AP.Name=  ECIF.First_Name__c +' '+ECIF.Last_Name__c;
+     insert AP;
+}
+}
