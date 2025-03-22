@@ -1,0 +1,11 @@
+trigger CON_NOT_DELETE_FEILD1 on Contact (before insert)
+{
+ list<contact> NDC = trigger.new;
+    
+    for( contact EC : NDC)
+         if (EC.LeadSource == 'Web') 
+         
+     {
+ EC.adderror('You cannot create a contact with LeadSource as "Web".');
+     }
+}
