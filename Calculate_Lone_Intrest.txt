@@ -1,0 +1,55 @@
+public class TotalLoanI {
+    public Integer loanAmount { get; set; }
+    public String loanType { get; set; }
+    public Integer tenure { get; set; }
+    public Decimal loanInterestRate { get; set; }
+    public Decimal totalInterest { get; set; }
+    public String EmailID { get; set; }
+
+    public List<SelectOption> getLoanTypes() {
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption('Home_Loan', 'Home Loan'));
+        options.add(new SelectOption('Car_Loan', 'Car Loan'));
+        options.add(new SelectOption('Personal_Loan', 'Personal Loan'));
+        options.add(new SelectOption('Consumer_Loan', 'Consumer Loan'));
+        return options;
+    }
+
+    public void calculateLoanInterest() {
+        
+        System.debug('Loan Amount:');
+        System.debug('Loan Type:');
+        System.debug('Tenure:');
+        System.debug('EmailID:');
+
+        Decimal interestRate = getInterestRate(loanType);
+        loanInterestRate = interestRate;
+        System.debug('Interest Rate: ' + loanInterestRate + '%');
+
+        totalInterest = (loanAmount * loanInterestRate * tenure) / 100; 
+        System.debug('Total Interest Payable: ' + totalInterest);
+        
+      
+        sendEmail();
+    }
+
+    public Decimal getInterestRate(String loanType) {
+        Map<String, Decimal> loanRates = new Map<String, Decimal> {
+            'Home_Loan' => 8.85,
+            'Car_Loan' => 9.00,
+            'Personal_Loan' => 15.00,
+            'Consumer_Loan' => 16.00
+        };
+
+        return loanRates.containsKey(loanType) ? loanRates.get(loanType) : 0;
+    }
+
+    
+    public void sendEmail() {
+        methodmessegesend SM = new methodmessegesend();
+        SM.toAdd = EmailID;
+        SM.Subject = 'Loan Interest for ' + loanType;
+        SM.Body = 'Your Loan Interest is: ' + totalInterest;
+        SM.methodmessegesendEmail();
+    }
+}
